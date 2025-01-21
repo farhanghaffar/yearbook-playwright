@@ -7,6 +7,9 @@ const UPLOADPHOTOSPAGE = {
         progressBar: 'div[role="progressbar"]',
         testCategoryOption: 'div[role="option"]',
     },
+    textLocators: {
+        previousProjectOptionToSelect: '90836'
+    }
 };
 
 module.exports = UPLOADPHOTOSPAGE;

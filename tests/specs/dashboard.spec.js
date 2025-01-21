@@ -12,15 +12,12 @@ test.describe('Dashboard', () => {
         await DASHBOARDMETHODS.loadDashboard(page);
 
         const myProjectsLink = await page.locator(DASHBOARDPAGE.cssLocators.myContentLink);
-
         await myProjectsLink.click();
 
         const myProjectsHeading = await page.getByRole('heading', { name: 'My Projects', level: 3 })
-
         await expect(myProjectsHeading).toBeVisible();
 
         const listedProject = await page.getByText(DASHBOARDPAGE.textLocators.listedProject);
-
         await expect(listedProject).toBeVisible();
     });
-})
+});

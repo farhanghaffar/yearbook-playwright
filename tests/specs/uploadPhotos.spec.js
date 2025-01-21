@@ -15,13 +15,13 @@ test.describe('Upload Photos', () => {
         await expect(myProjectsNavLink).toBeVisible();
         await myProjectsNavLink.click();
 
-        const listedProject = await page.getByRole('link', { name: 'Freedom Approval Test 2026' });
+        const listedProject = await page.getByRole('link', { name: DASHBOARDPAGE.textLocators.listedProject });
         await expect(listedProject).toBeVisible();
         await listedProject.click();
         
         const manageButton = await page.getByText(LADDERPAGE.textLocators.manageBtn, {exact: true});
         await expect(manageButton).toBeVisible();
-        await page.waitForTimeout(2000); // Temporarily so that test don't fail because of popup not loading on click of manage button
+        await page.waitForTimeout(2500); // Temporarily so that test don't fail because of popup not loading on click of manage button
         await manageButton.click();
         
         const managePhotosBtn = await page.getByRole('link').filter({hasText: 'Manage Photos'});
@@ -33,6 +33,7 @@ test.describe('Upload Photos', () => {
 
         const uploadPhotosBtn = await page.getByRole('button').filter({hasText: 'Upload Photos'});
         await expect(uploadPhotosBtn).toBeVisible();
+      await page.waitForTimeout(2000); // Temporarily so that test don't fail because of popup not loading on click of manage button
         await uploadPhotosBtn.click();
 
         const uploadPhotosPopup = await page.locator(UPLOADPHOTOSPAGE.cssLocators.uploadPhotosPopup).filter({hasText: 'Drop files here'});
@@ -46,13 +47,13 @@ test.describe('Upload Photos', () => {
       await expect(myProjectsNavLink).toBeVisible();
       await myProjectsNavLink.click();
 
-      const listedProject = await page.getByRole('link', { name: 'Freedom Approval Test 2026' });
+      const listedProject = await page.getByRole('link', { name: DASHBOARDPAGE.textLocators.listedProject });
       await expect(listedProject).toBeVisible();
       await listedProject.click();
       
       const manageButton = await page.getByText(LADDERPAGE.textLocators.manageBtn, {exact: true});
       await expect(manageButton).toBeVisible();
-      await page.waitForTimeout(2000); // Temporarily so that test don't fail because of popup not loading on click of manage button
+      await page.waitForTimeout(2500); // Temporarily so that test don't fail because of popup not loading on click of manage button
       await manageButton.click();
       
       const managePhotosBtn = await page.getByRole('link').filter({hasText: 'Manage Photos'});
@@ -88,13 +89,13 @@ test.describe('Upload Photos', () => {
       await expect(myProjectsNavLink).toBeVisible();
       await myProjectsNavLink.click();
 
-      const listedProject = await page.getByRole('link', { name: 'Freedom Approval Test 2026' });
+      const listedProject = await page.getByRole('link', { name: DASHBOARDPAGE.textLocators.listedProject });
       await expect(listedProject).toBeVisible();
       await listedProject.click();
       
       const manageButton = await page.getByText(LADDERPAGE.textLocators.manageBtn, {exact: true});
       await expect(manageButton).toBeVisible();
-      await page.waitForTimeout(2000); // Temporarily so that test don't fail because of popup not loading on click of manage button
+      await page.waitForTimeout(2500); // Temporarily so that test don't fail because of popup not loading on click of manage button
       await manageButton.click();
       
       const managePhotosBtn = await page.getByRole('link').filter({hasText: 'Manage Photos'});
@@ -137,13 +138,13 @@ test.describe('Upload Photos', () => {
       await expect(myProjectsNavLink).toBeVisible();
       await myProjectsNavLink.click();
 
-      const listedProject = await page.getByRole('link', { name: 'Freedom Approval Test 2026' });
+      const listedProject = await page.getByRole('link', { name: DASHBOARDPAGE.textLocators.listedProject });
       await expect(listedProject).toBeVisible();
       await listedProject.click();
       
       const manageButton = await page.getByText(LADDERPAGE.textLocators.manageBtn, {exact: true});
       await expect(manageButton).toBeVisible();
-      await page.waitForTimeout(2000); // Temporarily so that test don't fail because of popup not loading on click of manage button
+      await page.waitForTimeout(2500); // Temporarily so that test don't fail because of popup not loading on click of manage button
       await manageButton.click();
       
       const managePhotosBtn = await page.getByRole('link').filter({hasText: 'Manage Photos'});
@@ -204,13 +205,13 @@ test.describe('Upload Photos', () => {
       await expect(myProjectsNavLink).toBeVisible();
       await myProjectsNavLink.click();
 
-      const listedProject = await page.getByRole('link', { name: 'Freedom Approval Test 2026' });
+      const listedProject = await page.getByRole('link', { name: DASHBOARDPAGE.textLocators.listedProject });
       await expect(listedProject).toBeVisible();
       await listedProject.click();
       
       const manageButton = await page.getByText(LADDERPAGE.textLocators.manageBtn, {exact: true});
       await expect(manageButton).toBeVisible();
-      await page.waitForTimeout(2000); // Temporarily so that test don't fail because of popup not loading on click of manage button
+      await page.waitForTimeout(2500); // Temporarily so that test don't fail because of popup not loading on click of manage button
       await manageButton.click();
       
       const managePhotosBtn = await page.getByRole('link').filter({hasText: 'Manage Photos'});
@@ -283,13 +284,13 @@ test.describe('Upload Photos', () => {
       await expect(myProjectsNavLink).toBeVisible();
       await myProjectsNavLink.click();
 
-      const listedProject = await page.getByRole('link', { name: 'Freedom Approval Test 2026' });
+      const listedProject = await page.getByRole('link', { name: DASHBOARDPAGE.textLocators.listedProject });
       await expect(listedProject).toBeVisible();
       await listedProject.click();
       
       const manageButton = await page.getByText(LADDERPAGE.textLocators.manageBtn, {exact: true});
       await expect(manageButton).toBeVisible();
-      await page.waitForTimeout(2000); // Temporarily so that test don't fail because of popup not loading on click of manage button
+      await page.waitForTimeout(2500); // Temporarily so that test don't fail because of popup not loading on click of manage button
       await manageButton.click();
       
       const managePhotosBtn = await page.getByRole('link').filter({hasText: 'Manage Photos'});
@@ -358,6 +359,91 @@ test.describe('Upload Photos', () => {
          const element = await page.locator(`img[alt="${fileName}"]`);
          await expect(element.first()).toBeVisible();
       }
+
+      await UPLOADPHOTOSMETHODS.deleteAllUploadedPhotos(page);
+   });
+
+   test('Click Import Previous Photos working', async({page}) => {
+      await DASHBOARDMETHODS.loadDashboard(page);
+
+      const myProjectsNavLink = await page.locator(DASHBOARDPAGE.cssLocators.myProjectsLink);
+      await expect(myProjectsNavLink).toBeVisible();
+      await myProjectsNavLink.click();
+
+      const listedProject = await page.getByRole('link', { name: DASHBOARDPAGE.textLocators.listedProject });
+      await expect(listedProject).toBeVisible();
+      await listedProject.click();
+      
+      const manageButton = await page.getByText(LADDERPAGE.textLocators.manageBtn, {exact: true});
+      await expect(manageButton).toBeVisible();
+      await page.waitForTimeout(2500); // Temporarily so that test don't fail because of popup not loading on click of manage button
+      await manageButton.click();
+      
+      const managePhotosBtn = await page.getByRole('link').filter({hasText: 'Manage Photos'});
+      const managePopup = await page.locator(LADDERPAGE.cssLocators.managePopup).filter({hasText: 'Yearbook HomeManage', has: managePhotosBtn});
+      await expect(managePopup.first()).toBeVisible();
+
+      await expect(managePhotosBtn).toBeVisible();
+      await managePhotosBtn.click();
+
+      const importPreviousPhotosBtn = await page.getByRole('button').filter({hasText: 'Import Previous Photos'});
+      await expect(importPreviousPhotosBtn).toBeVisible();
+      await page.waitForTimeout(2000); // Temporarily so that test don't fail because of popup not loading on click of manage button
+      await importPreviousPhotosBtn.click();
+
+      const selectPreviousProjectElement = await page.locator('select').filter({hasText: '--- Select Project ---'});
+      await expect(selectPreviousProjectElement).toBeVisible();
+   });
+
+   test('Previous Photos are being uploaded', async({page}) => {
+      await DASHBOARDMETHODS.loadDashboard(page);
+
+      const myProjectsNavLink = await page.locator(DASHBOARDPAGE.cssLocators.myProjectsLink);
+      await expect(myProjectsNavLink).toBeVisible();
+      await myProjectsNavLink.click();
+
+      const listedProject = await page.getByRole('link', { name: DASHBOARDPAGE.textLocators.listedProject });
+      await expect(listedProject).toBeVisible();
+      await listedProject.click();
+      
+      const manageButton = await page.getByText(LADDERPAGE.textLocators.manageBtn, {exact: true});
+      await expect(manageButton).toBeVisible();
+      await page.waitForTimeout(2500); // Temporarily so that test don't fail because of popup not loading on click of manage button
+      await manageButton.click();
+      
+      const managePhotosBtn = await page.getByRole('link').filter({hasText: 'Manage Photos'});
+      const managePopup = await page.locator(LADDERPAGE.cssLocators.managePopup).filter({hasText: 'Yearbook HomeManage', has: managePhotosBtn});
+      await expect(managePopup.first()).toBeVisible();
+
+      await expect(managePhotosBtn).toBeVisible();
+      await managePhotosBtn.click();
+
+      const importPreviousPhotosBtn = await page.getByRole('button').filter({hasText: 'Import Previous Photos'});
+      await expect(importPreviousPhotosBtn).toBeVisible();
+      await page.waitForTimeout(2000); // Temporarily so that test don't fail because of popup not loading on click of manage button
+      await importPreviousPhotosBtn.click();
+
+      const selectPreviousProjectElement = await page.locator('select').filter({hasText: '--- Select Project ---'});
+      await expect(selectPreviousProjectElement).toBeVisible();
+
+      await selectPreviousProjectElement.selectOption(UPLOADPHOTOSPAGE.textLocators.previousProjectOptionToSelect);
+
+      const testCategoryCheckbox = await page.getByLabel(/Test\s*-\s*\(\d+\s*photos\)/);
+      await expect(testCategoryCheckbox).toBeVisible();
+      await testCategoryCheckbox.click();
+
+      const copyPhotosBtn = await page.getByRole('button').filter({hasText: 'Copy Photos to Freedom Approval Test 2026 Yearbook'});
+      await expect(copyPhotosBtn).toBeVisible();
+      await expect(copyPhotosBtn).not.toBeDisabled();
+      await copyPhotosBtn.click();
+
+      await page.waitForTimeout(3500); // Wait for upload to be complete
+      const successMsg = await page.getByText(/(\d+)\s+categories\s+and\s+(\d+)\s+photos\s+copied\s+successfully/);
+      await expect(successMsg).toBeVisible();
+
+      const goBackBtn = await page.getByRole('button').filter({hasText: 'Back to Manage Photos'});
+      await expect(goBackBtn).toBeVisible();
+      await goBackBtn.click();
 
       await UPLOADPHOTOSMETHODS.deleteAllUploadedPhotos(page);
    });

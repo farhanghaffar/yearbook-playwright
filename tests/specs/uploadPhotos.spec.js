@@ -33,7 +33,7 @@ test.describe('Upload Photos', () => {
 
         const uploadPhotosBtn = await page.getByRole('button').filter({hasText: 'Upload Photos'});
         await expect(uploadPhotosBtn).toBeVisible();
-      await page.waitForTimeout(2000); // Temporarily so that test don't fail because of popup not loading on click of manage button
+         await page.waitForTimeout(2000); // Temporarily so that test don't fail because of popup not loading on click of manage button
         await uploadPhotosBtn.click();
 
         const uploadPhotosPopup = await page.locator(UPLOADPHOTOSPAGE.cssLocators.uploadPhotosPopup).filter({hasText: 'Drop files here'});
@@ -343,7 +343,7 @@ test.describe('Upload Photos', () => {
       await expect(selectCategoryBtn).toBeVisible();
       await selectCategoryBtn.click();
 
-      const testCategoryOption =  await page.locator(UPLOADPHOTOSPAGE.cssLocators.testCategoryOption).filter({hasText: 'Test'});
+      const testCategoryOption =  await page.locator(UPLOADPHOTOSPAGE.cssLocators.testCategoryOption).filter({hasText: 'Imported Photos'});
       await expect(testCategoryOption.first()).toBeVisible();
       await testCategoryOption.first().click();
 
@@ -418,7 +418,7 @@ test.describe('Upload Photos', () => {
    
          await expect(managePhotosBtn).toBeVisible();
          await managePhotosBtn.click();
-   
+
          const importPreviousPhotosBtn = await page.getByRole('button').filter({hasText: 'Import Previous Photos'});
          await expect(importPreviousPhotosBtn).toBeVisible();
          await page.waitForTimeout(2000); // Temporarily so that test don't fail because of popup not loading on click of manage button
@@ -429,7 +429,7 @@ test.describe('Upload Photos', () => {
    
          await selectPreviousProjectElement.selectOption(UPLOADPHOTOSPAGE.textLocators.previousProjectOptionToSelect);
    
-         const testCategoryCheckbox = await page.getByLabel(/Test\s*-\s*\(\d+\s*photos\)/);
+         const testCategoryCheckbox = await page.getByLabel(/Test\s*-\s*\(\d+\s*photos\)/).first();
          await expect(testCategoryCheckbox).toBeVisible();
          await testCategoryCheckbox.click();
    

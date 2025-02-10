@@ -56,9 +56,9 @@ test.describe('Upload PDF', () => {
 
         const uploadOtherHeading = await page.getByText('Upload Other Content');
         await expect(uploadOtherHeading).toBeVisible();
-
         const fileInput = await page.locator(UPLOADPDFPAGE.cssLocators.inputTypeFile);
         const pdfFilePath = await path.join(__dirname, '../pdf/sample-local-pdf.pdf');
+        await expect(fileInput).toBeAttached()
         await fileInput.setInputFiles(pdfFilePath);
 
         const fileInQueueText = await page.getByText('file was added to queue');

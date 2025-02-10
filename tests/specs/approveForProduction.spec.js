@@ -27,13 +27,14 @@ test.describe('Approve for Production', () => {
 
         const targetDeliveryDateRadio = await targetDeliveryDateRow.locator('[name="deliveryDate"]');
         await expect(targetDeliveryDateRadio).toBeVisible();
+        await page.waitForTimeout(5000);
         const targetDeliveryDateRadioChecked = await targetDeliveryDateRadio.isChecked();
         if(!targetDeliveryDateRadioChecked) {
             await targetDeliveryDateRadio.click();
         }
         await expect(targetDeliveryDateRadio).toBeChecked();
 
-        await page.waitForTimeout(5000);
+        await page.waitForTimeout(2500);
 
         const confirmBtn = await page.getByRole('button').filter({hasText: 'Confirm and Go to Next Step'});
         await expect(confirmBtn).toBeVisible();
